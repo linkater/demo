@@ -1,0 +1,44 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-autowire="byName">
+	<!-- 读取properties文件，来获取数据库连接的所有参数值 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!-- 配置postgresql的数据源，使用的是alibaba的Druid(德鲁伊)数据源 -->
+	<!-- 配置postgresql的数据源，使用的是spring的jdbc(德鲁伊)数据源(无连接池效果) -->
+	<bean name="postgreSqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.postgresql.driver}" />
+		<property name="url" value="${jdbc.postgresql.url}" />
+		<property name="username" value="${jdbc.postgresql.username}" />
+		<property name="password" value="${jdbc.postgresql.password}" />
+	</bean>
+
+	<!-- 配置 postgreSQL SessionFactory -->
+	<bean id="postgreSQLSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 实例化sqlSessionFactory时需要使用上述配置好的数据源以及SQL映射文件 -->
+		<property name="dataSource" ref="postgreSqlDataSource" />
+		<!-- <property name="configLocation" value="classpath:mysql_mybatis-config.xml"/> -->
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:org/demo/dao/mapper/*.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 创建Mapper层的对象 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.demo.dao.service" />
+		<property name="sqlSessionFactoryBeanName" value="postgreSQLSessionFactory"/>
+	</bean>
+
+	<!-- 自动装配bean -->
+ 	<!-- <context:component-scan base-package="org.demo.dao.domain" /> -->
+</beans>  
