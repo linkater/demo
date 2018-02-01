@@ -12,7 +12,7 @@
 	
 	<!-- springjdbc数据源配置 -->
 
-	<!-- 配置postgresql的数据源，使用的是spring的jdbc(德鲁伊)数据源(无连接池效果) -->
+	<!-- 配置postgresql的数据源，使用的是spring的jdbc数据源(无连接池效果) -->
 	<bean name="postgreSqlJDBCDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.postgresql.driver}" />
 		<property name="url" value="${jdbc.postgresql.url}" />
@@ -21,7 +21,7 @@
 	</bean>
 
 	<!-- 配置 postgreSQL SessionFactory -->
-	<bean id="postgreSQLSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="postgreSQLJDBCSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 实例化sqlSessionFactory时需要使用上述配置好的数据源以及SQL映射文件 -->
 		<property name="dataSource" ref="postgreSqlJDBCDataSource" />
 		<!-- <property name="configLocation" value="classpath:mysql_mybatis-config.xml"/> -->
@@ -35,6 +35,6 @@
 	<!-- 创建Mapper层的对象 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="org.demo.dao.service" />
-		<property name="sqlSessionFactoryBeanName" value="postgreSQLSessionFactory"/>
+		<property name="sqlSessionFactoryBeanName" value="postgreSQLJDBCSessionFactory"/>
 	</bean>
 </beans>  

@@ -1,4 +1,4 @@
-package org.demo.dao;
+package org.demo.service;
 
 import org.demo.dao.domain.User;
 import org.demo.dao.service.UserMapper;
@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ch.qos.logback.classic.Logger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/spring-mybatis.xml")
+@ContextConfiguration("/spring-service.xml")
 public class SpringUnitTest {
 	private final Logger LOG = (Logger) LoggerFactory.getLogger(this.getClass());  
 	@Autowired

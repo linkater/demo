@@ -1,4 +1,5 @@
-package org.demo.dao;
+package com.demo.web.controller;
+
 
 import org.demo.dao.domain.User;
 import org.demo.dao.service.UserMapper;

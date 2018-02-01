@@ -15,6 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringTest {
 
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("/spring-mybatis.xml");
 
 		UserMapper bean = context.getBean("userMapper",UserMapper.class);

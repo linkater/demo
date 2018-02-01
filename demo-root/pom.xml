@@ -11,9 +11,9 @@
 	<modules>
 		<module>demo-base</module>
 		<module>demo-dao</module>
-		<module>demo-scheduler</module>
 		<module>demo-service</module>
 		<module>demo-web</module>
+		<module>demo-scheduler</module>
 		<module>demo-ws</module>
 	</modules>
 	<properties>
@@ -49,6 +49,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<!-- aspectj -->  
+        <dependency>  
+            <groupId>org.aspectj</groupId>  
+            <artifactId>aspectjweaver</artifactId>  
+            <version>1.8.1</version>  
+        </dependency>
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -77,6 +83,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+		<!-- driud连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.6</version>
 		</dependency>
 		<!-- slf4j日志 Simple Logging Facade for Java -->
 		<dependency>
