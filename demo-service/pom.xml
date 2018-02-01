@@ -17,6 +17,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>demo-root</groupId>
+			<artifactId>demo-base</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>demo-root</groupId>
 			<artifactId>demo-dao</artifactId>
 			<version>${project.version}</version>
 		</dependency>
